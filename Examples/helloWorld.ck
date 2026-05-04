@@ -4,7 +4,10 @@ SinOsc s => dac;
 // set frequency to 440Hz 
 440 => s.freq; 
 
-// allow 2 seconds to pass
-2::second => now;
+// set time to 2 seconds
+2 => int sec;
 
-<<< "Hello World! The tone you heard played at a frequency of", s.freq(), "Hz with equivalent to A4." >>>;
+// allow 2 seconds to pass
+sec::second => now;
+
+<<< "Hello World! The tone you heard played at a frequency of", s.freq(), "Hz, which is equivalent to A4, for", sec, "seconds." >>>;
