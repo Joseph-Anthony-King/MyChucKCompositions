@@ -10,4 +10,8 @@ SinOsc s => dac;
 // allow 2 seconds to pass
 sec::second => now;
 
-<<< "Hello World! The tone you heard played at a frequency of", s.freq(), "Hz, which is equivalent to A4, for", sec, "seconds." >>>;
+"Hello World! The tone you heard played at a frequency of " + 
+    s.freq() + " Hz, which is equivalent to A4, for " + 
+    sec + " seconds." => string message;
+
+<<< message >>>;
