@@ -1,10 +1,10 @@
 // ============================================================================
 // My Best Friend is a Guitar
 // By The Menshevik
-// ChucK Script - Mandolin Version
+// ChucK Script - Mandolin Version with Updated Chord Progressions
 // ============================================================================
-// This script converts the guitar tablature from "tableture-guitar.txt"
-// into playable ChucK code using a mandolin instrument.
+// This script uses the updated chord progressions from tableture-guitar.txt
+// with the corrected rhythm patterns.
 //
 // TEMPO: 120 BPM
 // KEY: G Mixolydian
@@ -93,24 +93,24 @@ fun void playChord(int notes[], float duration, float velocity) {
 }
 
 // ----------------------------------------------------------------------------
-// CHORD DEFINITIONS
+// CHORD DEFINITIONS - UPDATED BASED ON TABLATURE
 // ----------------------------------------------------------------------------
 // Each chord is defined as an array of MIDI notes
 // Based on the chord diagrams in the tablature file
 
-// G7 chord (measures use frets: E=X, B=0, G=0, D=0, A=2, E=3)
+// G7 chord (E=1, B=0, G=0, D=0, A=2, E=3)
 fun int[] chordG7() {
     int notes[6];
-    0 => notes[0];  // String 1 (high E): muted
-    tabToMidi(2, 0) => notes[1];  // String 2 (B): open = B3
-    tabToMidi(3, 0) => notes[2];  // String 3 (G): open = G3
-    tabToMidi(4, 0) => notes[3];  // String 4 (D): open = D3
-    tabToMidi(5, 2) => notes[4];  // String 5 (A): fret 2 = B2
-    tabToMidi(6, 3) => notes[5];  // String 6 (E): fret 3 = G2
+    tabToMidi(1, 1) => notes[0];  // String 1: fret 1 = F4
+    tabToMidi(2, 0) => notes[1];  // String 2: open = B3
+    tabToMidi(3, 0) => notes[2];  // String 3: open = G3
+    tabToMidi(4, 0) => notes[3];  // String 4: open = D3
+    tabToMidi(5, 2) => notes[4];  // String 5: fret 2 = B2
+    tabToMidi(6, 3) => notes[5];  // String 6: fret 3 = G2
     return notes;
 }
 
-// GM (G Major) chord (frets: E=3, B=0, G=0, D=0, A=2, E=3)
+// GM (G Major) chord with variation (E=3, B=0, G=0, D=0, A=2, E=3)
 fun int[] chordGM() {
     int notes[6];
     tabToMidi(1, 3) => notes[0];  // String 1: fret 3 = G4
@@ -122,57 +122,53 @@ fun int[] chordGM() {
     return notes;
 }
 
-// CM (C Major) chord (frets: E=0, B=1, G=0, D=2, A=3, E=X)
+// CM (C Major) chord (E=0, B=1, G=0, D=2, A=3, E=X)
 fun int[] chordCM() {
-    int notes[6];
+    int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
     tabToMidi(3, 0) => notes[2];  // String 3: open = G3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 3) => notes[4];  // String 5: fret 3 = C3
-    0 => notes[5];  // String 6: muted
     return notes;
 }
 
-// C7 chord (frets: E=0, B=1, G=3, D=2, A=3, E=X)
+// CM with high G (E=0, B=1, G=3, D=2, A=3, E=X)
 fun int[] chordC7() {
-    int notes[6];
+    int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
     tabToMidi(3, 3) => notes[2];  // String 3: fret 3 = Bb3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 3) => notes[4];  // String 5: fret 3 = C3
-    0 => notes[5];  // String 6: muted
     return notes;
 }
 
-// Am7 chord (frets: E=0, B=1, G=0, D=2, A=0, E=X)
-fun int[] chordAm7() {
-    int notes[6];
+// Am chord (E=0, B=1, G=0, D=2, A=0, E=X)
+fun int[] chordAm() {
+    int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
     tabToMidi(3, 0) => notes[2];  // String 3: open = G3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 0) => notes[4];  // String 5: open = A2
-    0 => notes[5];  // String 6: muted
     return notes;
 }
 
-// Am chord (frets: E=0, B=1, G=2, D=2, A=0, E=X)
-fun int[] chordAm() {
-    int notes[6];
+// Am with high G (E=0, B=1, G=2, D=2, A=0, E=X)
+fun int[] chordAm7() {
+    int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
     tabToMidi(3, 2) => notes[2];  // String 3: fret 2 = A3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 0) => notes[4];  // String 5: open = A2
-    0 => notes[5];  // String 6: muted
     return notes;
 }
 
-// Dm7 chord (frets: E=1, B=1, G=2, D=0, A=X, E=X)
+// Dm chord (E=1, B=1, G=2, D=0, A=X, E=X)
 fun int[] chordDm7() {
-    int notes[4];  // Only 4 strings used
+    int notes[4];
     tabToMidi(1, 1) => notes[0];  // String 1: fret 1 = F4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
     tabToMidi(3, 2) => notes[2];  // String 3: fret 2 = A3
@@ -180,9 +176,9 @@ fun int[] chordDm7() {
     return notes;
 }
 
-// Dm chord (frets: E=1, B=3, G=2, D=0, A=X, E=X)
+// Dm with high B (E=1, B=3, G=2, D=0, A=X, E=X) - used in some measures
 fun int[] chordDm() {
-    int notes[4];  // Only 4 strings used
+    int notes[4];
     tabToMidi(1, 1) => notes[0];  // String 1: fret 1 = F4
     tabToMidi(2, 3) => notes[1];  // String 2: fret 3 = D4
     tabToMidi(3, 2) => notes[2];  // String 3: fret 2 = A3
@@ -191,13 +187,13 @@ fun int[] chordDm() {
 }
 
 // ----------------------------------------------------------------------------
-// RHYTHM PATTERN FUNCTIONS
+// RHYTHM PATTERN FUNCTIONS (FROM FIXED VERSION)
 // ----------------------------------------------------------------------------
 // These functions implement the specific rhythm patterns from the tablature
 // Counting notation: 1 & 2 & 3 & 4 &
 // Each number is a quarter note beat, each & is an eighth note offbeat
 
-// Pattern 1: Quarter, eighth eighth, eighth eighth
+// Pattern 1: Quarter, eighth, quarter, eighth eighth eighth
 // Counting: 1   2 &   & 4 &
 // Used in measures 1-6, 9-14, etc.
 fun void playPattern1(int chord1[], int chord2[]) {
@@ -210,7 +206,7 @@ fun void playPattern1(int chord1[], int chord2[]) {
     // Beat 2&: Quarter note
     playChord(chord1, quarterNote, 0.8);
     
-    // Beat 3: Eighth note
+    // Beat 3&: Eighth note
     playChord(chord2, eighthNote, 0.7);
     
     // Beat 4: Eighth note
@@ -220,7 +216,7 @@ fun void playPattern1(int chord1[], int chord2[]) {
     playChord(chord2, eighthNote, 0.7);
 }
 
-// Pattern 2: Quarter, quarter eighth, quarter eighth
+// Pattern 2: Quarter, eighth, eighth, quarter, eighth eighth
 // Counting: 1   2 & 3   4 &
 // Used in measures 7-8, 15-16, etc.
 fun void playPattern2(int chord1[], int chord2[]) {
@@ -243,7 +239,7 @@ fun void playPattern2(int chord1[], int chord2[]) {
     playChord(chord2, eighthNote, 0.7);
 }
 
-// Pattern 4: Five note pattern (no final eighth)
+// Pattern 3: Quarter, eighth, quarter, eighth eighth (no final eighth)
 // Counting: 1   2 &   & 4
 // Used in measures 25-30 (chorus sections)
 fun void playPattern3(int chord1[]) {
@@ -264,27 +260,33 @@ fun void playPattern3(int chord1[]) {
 }
 
 // ----------------------------------------------------------------------------
-// SONG SECTION FUNCTIONS
+// SONG SECTION FUNCTIONS - UPDATED CHORD PROGRESSIONS
 // ----------------------------------------------------------------------------
 
 // Play the Intro (Measures 1-8)
 fun void playIntro() {
     <<< "Playing Intro (Measures 1-8)..." >>>;
     
+    // Measures 1: G7 → GM
     playPattern1(chordG7(), chordGM());
     
-    playPattern1(chordC7(), chordCM());
+    // Measures 2: CM → C7
+    playPattern1(chordCM(), chordC7());
     
+    // Measures 3: G7 → GM
+    playPattern1(chordG7(), chordGM());
+
+    // Measures 4: Dm7 → Dm
+    playPattern1(chordDm7(), chordDm());
+
+    // Measures 5: G7 → GM
     playPattern1(chordG7(), chordGM());
     
+    // Measures 6: Am7 → Am
     playPattern1(chordAm7(), chordAm());
     
-    playPattern1(chordG7(), chordGM());
-    
-    playPattern1(chordDm7(), chordDm7());
-    
-    playPattern2(chordG7(), chordAm7());
-
+    // Measures 7-8: G7/Am → G7
+    playPattern2(chordG7(), chordAm());
     playPattern3(chordGM());
 }
 
@@ -292,36 +294,50 @@ fun void playIntro() {
 fun void playVerse(string verseName) {
     <<< "Playing", verseName, "(16 measures)..." >>>;
     
+    // First 8 measures (9-16 or 33-40 or 57-64)
+    // Measures 1-2: G7 → GM
     playPattern1(chordG7(), chordGM());
     
-    playPattern1(chordC7(), chordCM());
+    // Measures 3-4: CM → C7
+    playPattern1(chordCM(), chordC7());
     
+    // Measures 5-6: G7 → GM
+    playPattern1(chordG7(), chordGM());
+
+    // Measures 4: Dm7 → Dm
+    playPattern1(chordDm7(), chordDm());
+
+    // Measures 5: G7 → GM
     playPattern1(chordG7(), chordGM());
     
+    // Measures 6: Am7 → Am
     playPattern1(chordAm7(), chordAm());
     
-    playPattern1(chordG7(), chordGM());
-    
-    playPattern1(chordDm7(), chordDm7());
-    
-    playPattern2(chordG7(), chordAm7());
-
+    // Measures 7-8: G7/Am → G7
+    playPattern2(chordG7(), chordAm());
     playPattern3(chordGM());
     
+    // Second 8 measures (17-24 or 41-48 or 65-72)
+    // Measures 1-2: G7 → GM
     playPattern1(chordG7(), chordGM());
     
-    playPattern1(chordC7(), chordCM());
+    // Measures 3-4: CM → C7
+    playPattern1(chordCM(), chordC7());
     
+    // Measures 5-6: G7 → GM
     playPattern1(chordG7(), chordGM());
-    
-    playPattern1(chordAm7(), chordAm());
-    
-    playPattern1(chordG7(), chordGM());
-    
-    playPattern1(chordDm7(), chordDm7());
-    
-    playPattern2(chordG7(), chordAm7());
 
+    // Measures 4: Dm7 → Dm
+    playPattern1(chordDm7(), chordDm());
+
+    // Measures 5: G7 → GM
+    playPattern1(chordG7(), chordGM());
+    
+    // Measures 6: Am7 → Am
+    playPattern1(chordAm7(), chordAm());    
+
+    // Measures 7-8: G7/Am → G7
+    playPattern2(chordG7(), chordAm());
     playPattern3(chordGM());
 }
 
@@ -329,47 +345,51 @@ fun void playVerse(string verseName) {
 fun void playChorus() {
     <<< "Playing Chorus (8 measures)..." >>>;
     
-    // Measures 25-26: G7 → Am7 (pattern 4 - five note pattern)
+    // Measures 1-2: G7 → Am
     playPattern3(chordG7());
-    playPattern3(chordAm7());
+    playPattern3(chordAm());
     
-    // Measures 27-28: Dm7 → Am7
+    // Measures 3-4: Dm7 → Am
     playPattern3(chordDm7());
-    playPattern3(chordAm7());
+    playPattern3(chordAm());
     
-    // Measures 29-30: G7 → Am7
+    // Measures 5-6: G7 → Am
     playPattern3(chordG7());
-    playPattern3(chordAm7());
+    playPattern3(chordAm());
     
-    // Measures 31-32: G7/Am
-    playPattern2(chordG7(), chordAm7());
-    
-    // Measures 33-34: GM
+    // Measures 7-8: G7/Am → GM
+    playPattern2(chordG7(), chordAm());
     playPattern3(chordGM());
 }
 
 // Play the Outro (Measures 81-88)
 fun void playOutro() {
+    <<< "Playing Outro (Measures 81-88)..." >>>;
     
+    // Measures 81: G7 → GM
     playPattern1(chordG7(), chordGM());
     
-    playPattern1(chordC7(), chordCM());
+    // Measures 82: CM → C7
+    playPattern1(chordCM(), chordC7());
     
+    // Measures 83: G7 → GM
+    playPattern1(chordG7(), chordGM());
+
+    // Measures 84: Dm7 → Dm
+    playPattern1(chordDm7(), chordDm());
+
+    // Measures 85: G7 → GM
     playPattern1(chordG7(), chordGM());
     
+    // Measures 86: Am7 → Am
     playPattern1(chordAm7(), chordAm());
     
-    playPattern1(chordG7(), chordGM());
-    
-    playPattern1(chordDm7(), chordDm7());
-    
-    playPattern2(chordG7(), chordAm7());
-
-    playPattern3(chordGM());
+    // Measures 87: G7/Am → G7
+    playPattern2(chordG7(), chordAm());
     
     // Final chord - let it ring
     <<< "Final chord - letting it ring..." >>>;
-    playChord(chordGM(), quarterNote * 4, 0.9);  // Whole note
+    playChord(chordGM(), quarterNote * 4, 0.9);  // Whole note with sustain
 }
 
 // ----------------------------------------------------------------------------
@@ -377,9 +397,10 @@ fun void playOutro() {
 // ----------------------------------------------------------------------------
 
 <<< "============================================" >>>;
-<<< "My Best Friend is a Guitar" >>>;
+<<< "My Best Friend is a Guitar - Version 2" >>>;
 <<< "By The Menshevik" >>>;
 <<< "Performed on Mandolin" >>>;
+<<< "Updated Chord Progressions" >>>;
 <<< "Tempo: 120 BPM | Key: G Mixolydian" >>>;
 <<< "============================================" >>>;
 <<< "" >>>;
