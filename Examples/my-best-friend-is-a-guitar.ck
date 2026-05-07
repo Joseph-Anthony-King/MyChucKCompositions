@@ -1,11 +1,8 @@
 // ============================================================================
 // My Best Friend is a Guitar
 // By The Menshevik
-// ChucK Script - Mandolin Version with Updated Chord Progressions
+// ChucK Script - Mandolin Version
 // ============================================================================
-// This script uses the updated chord progressions from tableture-guitar.txt
-// with the corrected rhythm patterns.
-//
 // TEMPO: 120 BPM
 // KEY: G Mixolydian
 // TIME SIGNATURE: 4/4
