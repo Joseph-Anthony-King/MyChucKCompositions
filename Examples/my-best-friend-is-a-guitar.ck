@@ -1,11 +1,8 @@
 // ============================================================================
 // My Best Friend is a Guitar
-// By The Menshevik
+// By Victor Menshevik
 // ChucK Script - Mandolin Version with Updated Chord Progressions
-// ============================================================================
-// This script uses the updated chord progressions from tableture-guitar.txt
-// with the corrected rhythm patterns.
-//
+// ============================================================================//
 // TEMPO: 120 BPM
 // KEY: G Mixolydian
 // TIME SIGNATURE: 4/4
@@ -144,23 +141,23 @@ fun int[] chordC7() {
     return notes;
 }
 
-// Am chord (E=0, B=1, G=0, D=2, A=0, E=X)
+// Am with high G (E=0, B=1, G=2, D=2, A=0, E=X)
 fun int[] chordAm() {
     int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
-    tabToMidi(3, 0) => notes[2];  // String 3: open = G3
+    tabToMidi(3, 2) => notes[2];  // String 3: fret 2 = A3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 0) => notes[4];  // String 5: open = A2
     return notes;
 }
 
-// Am with high G (E=0, B=1, G=2, D=2, A=0, E=X)
+// Am chord (E=0, B=1, G=0, D=2, A=0, E=X)
 fun int[] chordAm7() {
     int notes[5];
     tabToMidi(1, 0) => notes[0];  // String 1: open = E4
     tabToMidi(2, 1) => notes[1];  // String 2: fret 1 = C4
-    tabToMidi(3, 2) => notes[2];  // String 3: fret 2 = A3
+    tabToMidi(3, 0) => notes[2];  // String 3: open = G3
     tabToMidi(4, 2) => notes[3];  // String 4: fret 2 = E3
     tabToMidi(5, 0) => notes[4];  // String 5: open = A2
     return notes;
