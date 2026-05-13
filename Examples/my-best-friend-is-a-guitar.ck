@@ -395,7 +395,7 @@ fun void playOutro() {
 
 <<< "============================================" >>>;
 <<< "My Best Friend is a Guitar" >>>;
-<<< "By Vic Menshevik" >>>;
+<<< "By Victor Menshevik" >>>;
 <<< "Performed on Mandolin" >>>;
 <<< "Updated Chord Progressions" >>>;
 <<< "Tempo: 120 BPM | Key: G Mixolydian" >>>;
